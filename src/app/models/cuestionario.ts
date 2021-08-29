@@ -1,6 +1,6 @@
 import { Pregunta } from './pregunta';
 export class Cuestionario {
-    id?: number;
+    id!: number;
     nombre!: string;
     descripcion!: string;
     fechaCreacion?: Date;
