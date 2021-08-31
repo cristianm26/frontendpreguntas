@@ -29,6 +29,8 @@ import { IngresarNombreComponent } from './components/inicio/list-cuestionarios/
 import { PreguntaComponent } from './components/inicio/list-cuestionarios/pregunta/pregunta.component';
 import { RespuestaCuestionarioComponent } from './components/inicio/list-cuestionarios/respuesta-cuestionario/respuesta-cuestionario.component';
 import { AddTokenInterceptor } from './helpers/add-token.interceptor';
+import { EstadisticasComponent } from './components/dashboard/cuestionarios/estadisticas/estadisticas.component';
+import { DetalleRespuestaComponent } from './components/dashboard/cuestionarios/estadisticas/detalle-respuesta/detalle-respuesta.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { AddTokenInterceptor } from './helpers/add-token.interceptor';
     IngresarNombreComponent,
     PreguntaComponent,
     RespuestaCuestionarioComponent,
+    EstadisticasComponent,
+    DetalleRespuestaComponent,
   ],
   imports: [
     BrowserModule,

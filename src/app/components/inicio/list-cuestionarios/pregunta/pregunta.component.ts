@@ -3,6 +3,8 @@ import { RespuestaCuestionarioService } from '../../../../services/respuesta-cue
 import { CuestionarioService } from '../../../../services/cuestionario.service';
 import { Router } from '@angular/router';
 import { Pregunta } from '../../../../models/pregunta';
+import { RespuestaCuestionarioDetalle } from '../../../../models/respuestaCuestionarioDetalle';
+import { RespuestaCuestionario } from 'src/app/models/respuestaCuestionario';
 
 @Component({
   selector: 'app-pregunta',
@@ -17,6 +19,10 @@ export class PreguntaComponent implements OnInit {
   opcionSeleccionada: any;
   index = 0;
   idRespuestaSeleccionada: any;
+
+  listRespuestaDetalle: RespuestaCuestionarioDetalle[] = [];
+
+
 
   constructor(private respuestaCuestionarioService: RespuestaCuestionarioService,
     private cuestionarioService: CuestionarioService, private router: Router) { }
@@ -57,12 +63,41 @@ export class PreguntaComponent implements OnInit {
   }
 
   siguiente(): void {
-    this.respuestaCuestionarioService.respuestas.push(this.idRespuestaSeleccionada)
+    this.respuestaCuestionarioService.respuestas.push(this.idRespuestaSeleccionada);
+
+    // Creamos un objeto Respuesta Detalle 
+    const detalleRespuesta: RespuestaCuestionarioDetalle = {
+      respuestaId: this.idRespuestaSeleccionada
+    }
+
+    // Agregamos el objeto al array
+    this.listRespuestaDetalle.push(detalleRespuesta);
+
+
     this.rtaConfirmada = false;
     this.index++;
     this.idRespuestaSeleccionada = null;
+
     if (this.index === this.listPreguntas.length) {
-      this.router.navigate(['/inicio/respuestaCuestionario'])
+      /* this.router.navigate(['/inicio/respuestaCuestionario']) */
+      this.guardarRespuestaCuestionario();
     }
   }
+
+  guardarRespuestaCuestionario(): void {
+    const rtaCuestionario: RespuestaCuestionario = {
+      cuestionarioId: this.respuestaCuestionarioService.idCuestionario,
+      nombreParticipante: this.respuestaCuestionarioService.nombreParticipante,
+      listRtaCuestionarioDetalle: this.listRespuestaDetalle
+    };
+    this.loading = true;
+    this.respuestaCuestionarioService.guardarRespuestaCuestionario(rtaCuestionario).subscribe(data => {
+      this.loading = false;
+      this.router.navigate(['/inicio/respuestaCuestionario']);
+    }, error => {
+      this.loading = false;
+    })
+
+  }
+
 }
