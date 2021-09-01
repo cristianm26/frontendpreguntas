@@ -5,7 +5,7 @@ import { RegisterComponent } from './components/inicio/register/register.compone
 import { LoginComponent } from './components/inicio/login/login.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ListCuestionariosComponent } from './components/inicio/list-cuestionarios/list-cuestionarios.component';
+
 
 // Guards
 import { AuthGuard } from './helpers/auth.guard';
@@ -15,19 +15,19 @@ const routes: Routes = [
   {
     path: 'inicio', component: InicioComponent, children: [
       { path: '', component: BienvenidaComponent },
-      { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
       {
-        path: 'listCuestionarios', component: ListCuestionariosComponent,
-        loadChildren: () => import('./components/inicio/list-cuestionarios/list-cuestionarios.module').then(x => x.ListCuestionariosModule)
+        path: 'listCuestionarios', loadChildren: () => import('./components/inicio/list-cuestionarios/list-cuestionarios.module')
+          .then(x => x.ListCuestionariosModule)
       },
-
     ]
   },
   {
-    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], loadChildren: () => import('./components/dashboard/dashboard.module').then(x => x.DashboardModule)
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
+    loadChildren: () => import('./components/dashboard/dashboard.module')
+      .then(x => x.DashboardModule)
   },
-
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' }
 ];
 

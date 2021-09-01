@@ -37,7 +37,7 @@ export class PasoDosComponent implements OnInit {
   }
 
   guardarCuestionario(): void {
-    const cuestionario: Cuestionario = {
+    const cuestionario: any = {
       nombre: this.tituloCuestionario,
       descripcion: this.descripcionCuestionario,
       listPreguntas: this.listPreguntas

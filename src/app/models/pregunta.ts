@@ -1,7 +1,7 @@
 import { Respuesta } from './respuesta';
 export class Pregunta {
-    descripcion!: string;
-    listRespuestas!: Respuesta[];
+    descripcion: string;
+    listRespuestas: Respuesta[];
     hide?: boolean;
 
     constructor(descripcion: string, respuestas: Respuesta[]) {

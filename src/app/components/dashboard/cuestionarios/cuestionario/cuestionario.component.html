@@ -1,9 +1,9 @@
 <div class="text-center">
-    <app-loading ngIf="loading">
+    <app-loading *ngIf="loading">
     </app-loading>
 </div>
 
-<div class="text-center" ngIf="!loading">
+<div class="text-center" *ngIf="!loading">
     <h4 class="card-title">
         {{cuestionario.nombre | uppercase}}
     </h4>

@@ -8,7 +8,7 @@ import { CuestionarioService } from '../../../../services/cuestionario.service';
   styleUrls: ['./cuestionario.component.css']
 })
 export class CuestionarioComponent implements OnInit {
-  idCuestionario: number;
+  idCuestionario!: number;
   loading = false;
   cuestionario: any = { };
 
@@ -24,9 +24,10 @@ export class CuestionarioComponent implements OnInit {
 
   getCuestionario(): void {
     this.loading = true;
-    this.cuestionarioService.getCuestionario(parseInt(this.idCuestionario.toString())).subscribe(data => {
+    this.cuestionarioService.getCuestionario(this.idCuestionario).subscribe(data => {
       this.loading = false;
       this.cuestionario = data;
+
     })
   }
 

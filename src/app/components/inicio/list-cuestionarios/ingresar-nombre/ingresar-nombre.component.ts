@@ -18,6 +18,6 @@ export class IngresarNombreComponent implements OnInit {
   }
   siguiente(): void {
     this.respuestaCuestionario.nombreParticipante = this.nombreParticipante;
-    this.router.navigate(['/inicio/pregunta'])
+    this.router.navigate(['/inicio/listCuestionarios/pregunta']);
   }
 }

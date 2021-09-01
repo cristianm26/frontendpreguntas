@@ -11,20 +11,20 @@ import { NuevaPreguntaComponent } from './cuestionarios/nuevo-cuestionario/paso-
 import { EstadisticasComponent } from './cuestionarios/estadisticas/estadisticas.component';
 import { DetalleRespuestaComponent } from './cuestionarios/estadisticas/detalle-respuesta/detalle-respuesta.component';
 import { SharedModule } from '../../shared/shared.module';
+import { CuestionarioComponent } from './cuestionarios/cuestionario/cuestionario.component';
 
 
 @NgModule({
   declarations: [
     CambiarPasswordComponent,
     CuestionariosComponent,
+    NuevaPreguntaComponent,
     NuevoCuestionarioComponent,
     PasoUnoComponent,
     PasoDosComponent,
-    NuevaPreguntaComponent,
-    CuestionariosComponent,
+    CuestionarioComponent,
     EstadisticasComponent,
-    DetalleRespuestaComponent,
-
+    DetalleRespuestaComponent
   ],
   imports: [
     CommonModule,

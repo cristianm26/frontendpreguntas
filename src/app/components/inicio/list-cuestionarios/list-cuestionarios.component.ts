@@ -30,7 +30,7 @@ export class ListCuestionariosComponent implements OnInit {
 
   ingresarNombre(idCuestionario: number): void {
     this.respuestaCuestionario.idCuestionario = idCuestionario;
-    this.router.navigate(['/inicio/ingresarNombre'])
+    this.router.navigate(['/inicio/listCuestionarios/ingresarNombre']);
   }
 
 }

@@ -12,13 +12,13 @@ import { RespuestaCuestionario } from 'src/app/models/respuestaCuestionario';
   styleUrls: ['./pregunta.component.css']
 })
 export class PreguntaComponent implements OnInit {
-  idCuestionario: number = 0;
+  idCuestionario!: number;
   listPreguntas: any[] = [];
   loading = false;
   rtaConfirmada = false;
   opcionSeleccionada: any;
   index = 0;
-  idRespuestaSeleccionada: any;
+  idRespuestaSeleccionada!: any;
 
   listRespuestaDetalle: RespuestaCuestionarioDetalle[] = [];
 
@@ -46,7 +46,9 @@ export class PreguntaComponent implements OnInit {
   }
   obtenerPregunta(): string {
     return this.listPreguntas[this.index].descripcion;
+
   }
+
   getIndex(): number {
     return this.index;
   }
@@ -56,6 +58,7 @@ export class PreguntaComponent implements OnInit {
     this.rtaConfirmada = true;
     this.idRespuestaSeleccionada = idRespuesta;
   }
+
   AddClassOption(respuesta: any): any {
     if (respuesta === this.opcionSeleccionada) {
       return 'active text-light';
@@ -73,15 +76,17 @@ export class PreguntaComponent implements OnInit {
     // Agregamos el objeto al array
     this.listRespuestaDetalle.push(detalleRespuesta);
 
+    if (this.index === this.listPreguntas.length - 1) {
+      /* this.router.navigate(['/inicio/respuestaCuestionario']) */
+      this.guardarRespuestaCuestionario();
+    }
+
 
     this.rtaConfirmada = false;
     this.index++;
     this.idRespuestaSeleccionada = null;
 
-    if (this.index === this.listPreguntas.length) {
-      /* this.router.navigate(['/inicio/respuestaCuestionario']) */
-      this.guardarRespuestaCuestionario();
-    }
+
   }
 
   guardarRespuestaCuestionario(): void {
@@ -93,11 +98,11 @@ export class PreguntaComponent implements OnInit {
     this.loading = true;
     this.respuestaCuestionarioService.guardarRespuestaCuestionario(rtaCuestionario).subscribe(data => {
       this.loading = false;
-      this.router.navigate(['/inicio/respuestaCuestionario']);
+      this.router.navigate(['/inicio/listCuestionarios/respuestaCuestionario']);
     }, error => {
       this.loading = false;
-    })
+      console.log(error);
+    });
 
   }
-
 }
